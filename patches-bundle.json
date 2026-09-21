@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-09-21T18:40:00",
-  "description": "## 3.9.0-focus-lock.1\n\nUpstream piko v3.9.0 plus the **Focus Lock** Instagram patch: a commitment mode that locks Reels/Explore blocking for a chosen duration. Unlocking early requires a 24 hour cooling-off period; resetting or importing settings is blocked while locked.\n\nSource: https://github.com/jonasradke/piko/tree/feat/focus-lock",
-  "download_url": "https://github.com/jonasradke/piko/releases/download/v3.9.0-focus-lock.1/patches-3.9.0-focus-lock.mpp",
-  "version": "3.9.0-focus-lock.1"
+  "created_at": "2026-09-21T19:05:00",
+  "description": "## 3.10.0-focus-lock.2\n\nFocus Lock rebased onto upstream `dev` (3.10.0-dev.8), which includes the new **Customize navigation bar** editor. Matches https://github.com/crimera/piko/pull/1928.",
+  "download_url": "https://github.com/jonasradke/piko/releases/download/v3.9.0-focus-lock.2/patches-focus-lock.2.mpp",
+  "version": "3.10.0-focus-lock.2"
 }
