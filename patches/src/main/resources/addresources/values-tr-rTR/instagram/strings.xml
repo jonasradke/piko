@@ -72,8 +72,6 @@
     <string name="piko_disable_analytics">Analizleri devre dışı bırak</string>
     <string name="piko_delete_analytics_cache">Analiz önbelleğini sil</string>
     <string name="piko_disable_analytics_desc">Instagram/Facebook sunucularına gönderilen analitikleri engeller</string>
-    <string name="piko_disable_discover_people">Kişileri keşfetmeyi kapat</string>
-    <string name="piko_disable_discover_people_desc">Kullanıcı profilindeki Kişileri keşfet bölümünü devre dışı bırak</string>
     <string name="piko_follow_back_indicator">Arkadaşlık durumu göstergesini etkinleştir</string>
     <string name="piko_follow_back_indicator_desc">Profil sayfasına \"geri takip ediyor\" durum etiketi ekler ve tıklandığında ayrıntılı arkadaşlık durumunu gösterir</string>
     <string name="piko_fbi_color_indicator">Renkli arkadaşlık durumu göstergesini etkinleştir</string>
@@ -145,7 +143,6 @@
     <string name="piko_download_all">Tümünü indir</string>
     <string name="piko_downloading_media">İndiriliyor: </string>
     <string name="piko_downloaded_media">İndirildi: </string>
-    <string name="piko_media_exists">Bu medya zaten mevcut</string>
     <string name="piko_download_failed_media">İndirme başarısız: </string>
     <string name="piko_download_set_path">İndirme klasörünü seçin</string>
     <string name="piko_download_set_path_success">İndirme klasörü güncellendi!</string>
@@ -354,4 +351,7 @@
     <string name="piko_media_like">beğeni</string>
     <string name="piko_media_link">bağlantı</string>
     <string name="piko_media_activity">aktivite</string>
+    <string name="piko_mark_story_seen">Görüldü olarak işaretle</string>
+    <string name="piko_story_seen_pending">Görüldü olarak işaretleme</string>
+    <string name="piko_story_seen_sent">Görüldü olarak işaretlendi</string>
 </resources>

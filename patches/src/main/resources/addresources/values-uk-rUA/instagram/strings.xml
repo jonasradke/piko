@@ -72,8 +72,6 @@
     <string name="piko_disable_analytics">Вимкнути аналітику</string>
     <string name="piko_delete_analytics_cache">Очистити кеш аналітики</string>
     <string name="piko_disable_analytics_desc">Блокувати надсилання аналітики на сервери Instagram/Facebook</string>
-    <string name="piko_disable_discover_people">Вимкнути розділ «Можливі знайомі»</string>
-    <string name="piko_disable_discover_people_desc">Вимикає розділ рекомендацій людей у профілі користувача</string>
     <string name="piko_follow_back_indicator">Увімкнути індикатор взаємної підписки</string>
     <string name="piko_follow_back_indicator_desc">Додає позначку «Стежить за вами» на сторінці профілю та показує детальну інформацію про статус дружби після натискання</string>
     <string name="piko_fbi_color_indicator">Увімкнути кольоровий індикатор статусу дружби</string>
@@ -145,7 +143,6 @@
     <string name="piko_download_all">Завантажити все</string>
     <string name="piko_downloading_media">Завантаження: </string>
     <string name="piko_downloaded_media">Завантажено: </string>
-    <string name="piko_media_exists">Медіа вже існує</string>
     <string name="piko_download_failed_media">Помилка завантаження: </string>
     <string name="piko_download_set_path">Вибрати папку для завантаження</string>
     <string name="piko_download_set_path_success">Папку для завантаження оновлено!</string>
@@ -354,4 +351,7 @@
     <string name="piko_media_like">подобається</string>
     <string name="piko_media_link">посилання</string>
     <string name="piko_media_activity">активність</string>
+    <string name="piko_mark_story_seen">Позначити як переглянуте</string>
+    <string name="piko_story_seen_pending">Позначається як переглянуте…</string>
+    <string name="piko_story_seen_sent">Позначено як переглянуте</string>
 </resources>

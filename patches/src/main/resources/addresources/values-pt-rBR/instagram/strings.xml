@@ -72,8 +72,6 @@
     <string name="piko_disable_analytics">Desativar análises</string>
     <string name="piko_delete_analytics_cache">Apagar cache de análises</string>
     <string name="piko_disable_analytics_desc">Bloqueie análises enviadas para os servidores do Instagram/Facebook.</string>
-    <string name="piko_disable_discover_people">Desativar descobrir pessoas.</string>
-    <string name="piko_disable_discover_people_desc">Desativar a seção de descobrir pessoas no perfil.</string>
     <string name="piko_follow_back_indicator">Ativar indicador de status de amizade</string>
     <string name="piko_follow_back_indicator_desc">Adiciona uma etiqueta de \"segue você de volta\" na página do perfil e exibe um resumo detalhado do status de amizade ao clicar.</string>
     <string name="piko_fbi_color_indicator">Ativar indicador colorido do status de amizade</string>
@@ -145,7 +143,6 @@
     <string name="piko_download_all">Baixar tudo</string>
     <string name="piko_downloading_media">Baixando: </string>
     <string name="piko_downloaded_media">Baixado: </string>
-    <string name="piko_media_exists">A mídia já existe</string>
     <string name="piko_download_failed_media">Falha ao baixar : </string>
     <string name="piko_download_set_path">Escolher pasta de download</string>
     <string name="piko_download_set_path_success">Diretório de downloads atualizado!</string>

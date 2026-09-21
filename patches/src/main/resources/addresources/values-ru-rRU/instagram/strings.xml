@@ -72,8 +72,6 @@
     <string name="piko_disable_analytics">Отключить аналитику</string>
     <string name="piko_delete_analytics_cache">Очистить кэш аналитики</string>
     <string name="piko_disable_analytics_desc">Блокирует аналитику, отправляемую на сервера Instagram/Facebook</string>
-    <string name="piko_disable_discover_people">Отключить раздел «Возможные знакомые»</string>
-    <string name="piko_disable_discover_people_desc">Отключает раздел «Возможные знакомые» в профиле пользователя</string>
     <string name="piko_follow_back_indicator">Включить индикатор статуса дружбы</string>
     <string name="piko_follow_back_indicator_desc">Добавляет на страницу профиля метку «Подписан(а) на вас» и показывает подробную информацию о статусе дружбы при нажатии</string>
     <string name="piko_fbi_color_indicator">Включить цветной индикатор статуса дружбы</string>
@@ -145,7 +143,6 @@
     <string name="piko_download_all">Скачать всё</string>
     <string name="piko_downloading_media">Скачивание: </string>
     <string name="piko_downloaded_media">Скачано: </string>
-    <string name="piko_media_exists">Медиа уже существует</string>
     <string name="piko_download_failed_media">Ошибка скачивания: </string>
     <string name="piko_download_set_path">Выбрать папку загрузки</string>
     <string name="piko_download_set_path_success">Папка для скачиваний обновлена!</string>
@@ -354,4 +351,7 @@
     <string name="piko_media_like">лайк</string>
     <string name="piko_media_link">ссылка</string>
     <string name="piko_media_activity">активность</string>
+    <string name="piko_mark_story_seen">Отметить как просмотренное</string>
+    <string name="piko_story_seen_pending">Отметка о просмотре</string>
+    <string name="piko_story_seen_sent">Отмечено как просмотренное</string>
 </resources>
