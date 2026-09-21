@@ -197,6 +197,7 @@ To patch with Twitter/X version 11.88 to 12.4, you must include patches from ano
 | [Download voice message](#download-voice-message) | Enables ability to download voice messages |  |
 | [External downloader](#external-downloader) | Adds support to share post links directly to external downloader |  |
 | [Filter stories](#filter-stories) | Filter stories to hide based on different categories |  |
+| [Focus Lock](#focus-lock) | Commitment mode for cutting down on Instagram. Pick what to block (Reels, Explore) and a duration; once locked those protections are forced on and cannot be switched off. Unlocking early requires a 24 hour cooling-off period, and resetting or importing settings is blocked while locked. |  |
 | [Friendship status indicator](#friendship-status-indicator) | Adds a follows you back status label on the profile page andshows a detailed friendship status breakdown on click |  |
 | [Hide group creation button on sharesheet](#hide-group-creation-button-on-sharesheet) |  |  |
 | [Hide navigation buttons](#hide-navigation-buttons) | Hides navigation bar buttons, such as the Reels and Create button. |  |
