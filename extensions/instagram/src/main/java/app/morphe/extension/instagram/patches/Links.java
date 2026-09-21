@@ -29,6 +29,7 @@ import app.morphe.extension.instagram.patches.story.StorySeenRequestScope;
 import app.morphe.extension.crimera.PikoUtils;
 
 import app.morphe.extension.instagram.settings.ActivityHook;
+import app.morphe.extension.instagram.patches.focusLock.FocusLock;
 
 @SuppressWarnings("unused")
 public class Links {
@@ -151,6 +152,8 @@ public class Links {
                     shouldBlockUri = DISABLE_ADS;
                 } else if (path.contains("/highlights_tray")) {
                     shouldBlockUri = DISABLE_HIGHLIGHTS;
+                } else if (FocusLock.isReelsFeedPath(path)) {
+                    shouldBlockUri = FocusLock.blocksReels();
                 }
 
             }

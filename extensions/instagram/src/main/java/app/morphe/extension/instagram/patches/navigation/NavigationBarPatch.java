@@ -8,6 +8,7 @@ package app.morphe.extension.instagram.patches.navigation;
 
 import android.content.Intent;
 
+import app.morphe.extension.instagram.patches.focusLock.FocusLock;
 import app.morphe.extension.instagram.settings.SettingsRestart;
 import app.morphe.extension.instagram.utils.Pref;
 
@@ -198,11 +199,22 @@ public final class NavigationBarPatch {
         // A shortcut can open settings before native tabs exist; keep legacy migration pending.
         if (nativeCreateVisible == null && legacyPresent
                 && (stored == null || stored.isEmpty())) {
-            return config;
+            return applyFocusLock(config);
         }
         String normalized = encodeConfig(config);
         if (!Objects.equals(stored, normalized)) Pref.setNavigationTabs(normalized);
-        return config;
+        return applyFocusLock(config);
+    }
+
+    /**
+     * Focus Lock hides the Reels tab regardless of the stored config. Applied after the config is
+     * persisted so the user's own layout is untouched and comes back once the lock ends.
+     */
+    private static Config applyFocusLock(Config config) {
+        if (!FocusLock.blocksReels() || !config.visible().contains(Tab.REELS)) return config;
+        EnumSet<Tab> visible = EnumSet.copyOf(config.visible());
+        visible.remove(Tab.REELS);
+        return normalize(config.order(), visible, config.startup());
     }
 
     public static boolean saveConfig(List<Tab> order, Set<Tab> visible, Tab startup) {

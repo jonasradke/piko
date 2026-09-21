@@ -16,6 +16,8 @@ import app.morphe.extension.crimera.settings.StringSetting;
 import app.morphe.extension.instagram.settings.Settings;
 import app.morphe.extension.instagram.settings.SettingsStatus;
 import app.morphe.extension.instagram.constants.Constants;
+import app.morphe.extension.instagram.patches.focusLock.FocusLock;
+
 import app.morphe.extension.crimera.sharedPreference.SharedPref;
 import app.morphe.extension.shared.MarkChatAsReadScope;
 
@@ -28,6 +30,8 @@ public class Pref {
     }
 
     public static boolean clearAllPreferences() {
+        // Resetting settings would silently drop an active Focus Lock.
+        if (FocusLock.isLocked()) return false;
         return SharedPref.clearAll();
     }
     
@@ -137,7 +141,7 @@ public class Pref {
     }
 
     public static boolean disableExplore() {
-        return SharedPref.getBooleanPref(Settings.DISABLE_EXPLORE);
+        return SharedPref.getBooleanPref(Settings.DISABLE_EXPLORE) || FocusLock.blocksExplore();
     }
 
     public static boolean disableComments() {
@@ -157,7 +161,7 @@ public class Pref {
     }
 
     public static boolean disableReelsScrolling() {
-        return SharedPref.getBooleanPref(Settings.DISABLE_REELS_SCROLLING) && SettingsStatus.disableReelsScrolling;
+        return (SharedPref.getBooleanPref(Settings.DISABLE_REELS_SCROLLING) || FocusLock.blocksReels()) && SettingsStatus.disableReelsScrolling;
     }
 
     public static boolean disableSwipeToCreate() {
@@ -270,7 +274,7 @@ public class Pref {
     }
 
     public static boolean hideNavigationReels() {
-        return SharedPref.getBooleanPref(Settings.HIDE_NAVIGATION_REELS);
+        return SharedPref.getBooleanPref(Settings.HIDE_NAVIGATION_REELS) || FocusLock.blocksReels();
     }
 
     public static boolean hideNavigationDirect() {
