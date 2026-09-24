@@ -20,6 +20,8 @@ import app.morphe.extension.instagram.entity.Entity;
 import app.morphe.extension.instagram.entity.MediaData;
 import app.morphe.extension.instagram.settings.SettingsStatus;
 import app.morphe.extension.instagram.utils.Pref;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import app.morphe.extension.shared.Logger;
 import app.morphe.extension.shared.ShareLinkSanitizer;
@@ -164,7 +166,13 @@ public class Links {
         }
         // Exception is hanndled at call.
         if (shouldBlockUri && Pref.pikoDebug()) {
-            Log.d("piko", "blocked uri: " + uri);
+            // Surfaced as a toast too: a blocked request is otherwise invisible without adb,
+            // and it is the only way to tell an intentional block from an unrelated failure.
+            String blocked = String.valueOf(uri);
+            Log.d("piko", "blocked uri: " + blocked);
+            new Handler(Looper.getMainLooper()).post(
+                    () -> Utils.showToastShort("piko blocked: " + blocked)
+            );
         }
         if(shouldBlockUri) {
             throw new IOException("Block uri");
