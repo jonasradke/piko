@@ -379,12 +379,14 @@ public class ScreenBuilder {
             );
         }
         if (SettingsStatus.disableExplore) {
-            addEnforceableSwitch(
-                    helper.switchPreference(
+            addPreference(
+                    helper.forcedSwitchPreference(
                             str("piko_disable_explore"),
                             "",
-                            Settings.DISABLE_EXPLORE
-                    ), FocusLock.blocksExplore()
+                            Settings.DISABLE_EXPLORE,
+                            FocusLock.blocksExplore(),
+                            str("piko_focus_lock_enforced")
+                    )
             );
         }
         if (SettingsStatus.disableComments) {
@@ -406,12 +408,14 @@ public class ScreenBuilder {
             );
         }
         if (SettingsStatus.disableReelsScrolling) {
-            addEnforceableSwitch(
-                    helper.switchPreference(
+            addPreference(
+                    helper.forcedSwitchPreference(
                             str("piko_disable_reels_scrolling"),
                             str("piko_disable_reels_scrolling_desc"),
-                            Settings.DISABLE_REELS_SCROLLING
-                    ), FocusLock.blocksReels()
+                            Settings.DISABLE_REELS_SCROLLING,
+                            FocusLock.blocksReels(),
+                            str("piko_focus_lock_enforced")
+                    )
             );
         }
         if (SettingsStatus.disableSwipeToCreate) {
@@ -515,21 +519,6 @@ public class ScreenBuilder {
         addPreference(blockReels);
         addPreference(blockExplore);
         addPreference(duration);
-    }
-
-    /**
-     * Adds a switch that Focus Lock may currently force on. When enforced it is shown checked and
-     * greyed out without touching the stored value, so the user's own choice survives the lock.
-     */
-    private void addEnforceableSwitch(Preference pref, boolean enforced) {
-        addPreference(pref);
-        if (enforced && pref instanceof SwitchPref) {
-            SwitchPref switchPref = (SwitchPref) pref;
-            switchPref.setPersistent(false);
-            switchPref.setChecked(true);
-            switchPref.setSwitchInteractionEnabled(false);
-            switchPref.setSummary(str("piko_focus_lock_enforced"));
-        }
     }
 
     public void buildMiscSection() {

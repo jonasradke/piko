@@ -13,8 +13,7 @@ import android.content.Context;
 import android.preference.Preference;
 
 import app.morphe.extension.crimera.PikoUtils;
-import app.morphe.extension.crimera.sharedPreference.SharedPref;
-import app.morphe.extension.instagram.settings.Settings;
+import app.morphe.extension.instagram.utils.Pref;
 import app.morphe.extension.instagram.settings.preference.widgets.InstagramPreferenceStyle;
 import app.morphe.extension.shared.Utils;
 
@@ -40,13 +39,13 @@ public class FocusLockDialogs {
     }
 
     private static void confirmLock(Context context) {
-        boolean reels = SharedPref.getBooleanPref(Settings.FOCUS_LOCK_BLOCK_REELS);
-        boolean explore = SharedPref.getBooleanPref(Settings.FOCUS_LOCK_BLOCK_EXPLORE);
+        boolean reels = Pref.focusLockBlockReels();
+        boolean explore = Pref.focusLockBlockExplore();
         if (!reels && !explore) {
             PikoUtils.toast(str("piko_focus_lock_nothing_selected"));
             return;
         }
-        String days = SharedPref.getStringPref(Settings.FOCUS_LOCK_DURATION_DAYS);
+        String days = Pref.focusLockDurationDays();
         String message = String.format(
                 str("piko_focus_lock_confirm_lock_desc"),
                 days,

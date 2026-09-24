@@ -168,6 +168,34 @@ public class Pref {
         return SharedPref.getBooleanPref(Settings.DISABLE_SWIPE_TO_CREATE) && SettingsStatus.disableSwipeToCreate;
     }
 
+    public static boolean focusLockBlockReels() {
+        return SharedPref.getBooleanPref(Settings.FOCUS_LOCK_BLOCK_REELS);
+    }
+
+    public static boolean focusLockBlockExplore() {
+        return SharedPref.getBooleanPref(Settings.FOCUS_LOCK_BLOCK_EXPLORE);
+    }
+
+    public static String focusLockDurationDays() {
+        return SharedPref.getStringPref(Settings.FOCUS_LOCK_DURATION_DAYS);
+    }
+
+    public static String focusLockUntil() {
+        return SharedPref.getStringPref(Settings.FOCUS_LOCK_UNTIL);
+    }
+
+    public static boolean setFocusLockUntil(String value) {
+        return SharedPref.setStringPref(Settings.FOCUS_LOCK_UNTIL.key, value);
+    }
+
+    public static String focusLockUnlockRequestedAt() {
+        return SharedPref.getStringPref(Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT);
+    }
+
+    public static boolean setFocusLockUnlockRequestedAt(String value) {
+        return SharedPref.setStringPref(Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT.key, value);
+    }
+
     public static boolean makeEphemeralMediaPermanent() {
         return SharedPref.getBooleanPref(Settings.UNLIMITED_REPLAYS) && SettingsStatus.unlimitedReplaysOnEphemeralMedia;
     }

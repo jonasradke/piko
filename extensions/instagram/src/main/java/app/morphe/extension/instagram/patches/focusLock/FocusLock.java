@@ -12,8 +12,7 @@ import android.text.format.DateFormat;
 
 import java.util.Date;
 
-import app.morphe.extension.crimera.sharedPreference.SharedPref;
-import app.morphe.extension.instagram.settings.Settings;
+import app.morphe.extension.instagram.utils.Pref;
 
 /**
  * Commitment mode: once locked, the selected distraction-free protections are forced on
@@ -34,11 +33,11 @@ public class FocusLock {
     }
 
     public static long lockedUntil() {
-        return parseLong(SharedPref.getStringPref(Settings.FOCUS_LOCK_UNTIL));
+        return parseLong(Pref.focusLockUntil());
     }
 
     public static long unlockRequestedAt() {
-        return parseLong(SharedPref.getStringPref(Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT));
+        return parseLong(Pref.focusLockUnlockRequestedAt());
     }
 
     // Intentionally does not consult SettingsStatus: the lock timestamp is only ever written by
@@ -63,11 +62,11 @@ public class FocusLock {
     // Enforcement helpers. These are OR-ed into the regular preference getters in Pref,
     // so the underlying switches keep their stored value and simply cannot take effect.
     public static boolean blocksReels() {
-        return isLocked() && SharedPref.getBooleanPref(Settings.FOCUS_LOCK_BLOCK_REELS);
+        return isLocked() && Pref.focusLockBlockReels();
     }
 
     public static boolean blocksExplore() {
-        return isLocked() && SharedPref.getBooleanPref(Settings.FOCUS_LOCK_BLOCK_EXPLORE);
+        return isLocked() && Pref.focusLockBlockExplore();
     }
 
     /**
@@ -87,28 +86,25 @@ public class FocusLock {
     }
 
     public static boolean lock() {
-        long days = parseLong(SharedPref.getStringPref(Settings.FOCUS_LOCK_DURATION_DAYS));
+        long days = parseLong(Pref.focusLockDurationDays());
         if (days <= 0) days = 7;
         long until = System.currentTimeMillis() + days * DAY_MS;
-        return SharedPref.setStringPref(Settings.FOCUS_LOCK_UNTIL.key, String.valueOf(until))
-                && SharedPref.setStringPref(Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT.key, "0");
+        return Pref.setFocusLockUntil(String.valueOf(until))
+                && Pref.setFocusLockUnlockRequestedAt("0");
     }
 
     public static boolean requestUnlock() {
-        return SharedPref.setStringPref(
-                Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT.key,
-                String.valueOf(System.currentTimeMillis())
-        );
+        return Pref.setFocusLockUnlockRequestedAt(String.valueOf(System.currentTimeMillis()));
     }
 
     public static boolean cancelUnlockRequest() {
-        return SharedPref.setStringPref(Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT.key, "0");
+        return Pref.setFocusLockUnlockRequestedAt("0");
     }
 
     public static boolean unlock() {
         if (!canUnlockNow()) return false;
-        return SharedPref.setStringPref(Settings.FOCUS_LOCK_UNTIL.key, "0")
-                && SharedPref.setStringPref(Settings.FOCUS_LOCK_UNLOCK_REQUESTED_AT.key, "0");
+        return Pref.setFocusLockUntil("0")
+                && Pref.setFocusLockUnlockRequestedAt("0");
     }
 
     public static String formatDate(long millis) {
