@@ -20,6 +20,7 @@ import app.morphe.extension.instagram.entity.Entity;
 import app.morphe.extension.instagram.entity.MediaData;
 import app.morphe.extension.instagram.settings.SettingsStatus;
 import app.morphe.extension.instagram.utils.Pref;
+import android.util.Log;
 import app.morphe.extension.shared.Logger;
 import app.morphe.extension.shared.ShareLinkSanitizer;
 import app.morphe.extension.shared.Utils;
@@ -159,6 +160,9 @@ public class Links {
             Logger.printException(() -> "intercept URI failed: ", ex);
         }
         // Exception is hanndled at call.
+        if (shouldBlockUri && Pref.pikoDebug()) {
+            Log.d("piko", "blocked uri: " + uri);
+        }
         if(shouldBlockUri) {
             throw new IOException("Block uri");
         }

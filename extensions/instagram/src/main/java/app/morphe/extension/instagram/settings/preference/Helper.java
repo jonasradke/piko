@@ -52,6 +52,31 @@ public class Helper {
         return preference;
     }
 
+    /**
+     * A switch whose value is currently forced on by another feature.
+     *
+     * When {@code forced} the switch is shown checked and non-interactive with
+     * {@code forcedSummary}, without writing to the stored value, so the user's own choice
+     * returns once the feature releases it.
+     * Not specific to any patch: any feature that overrides a setting can use it.
+     */
+    public Preference forcedSwitchPreference(
+            String title,
+            String summary,
+            BooleanSetting setting,
+            boolean forced,
+            String forcedSummary
+    ) {
+        Preference preference = switchPreference(title, forced ? forcedSummary : summary, setting);
+        if (forced && preference instanceof SwitchPref) {
+            SwitchPref switchPreference = (SwitchPref) preference;
+            switchPreference.setPersistent(false);
+            switchPreference.setChecked(true);
+            switchPreference.setSwitchInteractionEnabled(false);
+        }
+        return preference;
+    }
+
     public Preference listPreference(String title, String summary, StringSetting setting) {
         ListPref preference = new ListPref(context);
         String key = setting.key;
