@@ -69,22 +69,6 @@ public class FocusLock {
         return isLocked() && Pref.focusLockBlockExplore();
     }
 
-    /**
-     * Reels *feed* endpoints, so the Reels tab stays empty even if reached via a deep link.
-     *
-     * Deliberately excludes the endpoints that serve a single reel, so a reel shared in a DM, a
-     * story or a notification still opens. /clips/chaining/ is one of those: it seeds the viewer
-     * when a single reel is opened from a permalink, not just the "up next" chain. Swiping onward
-     * is already prevented by "Disable Reels scrolling".
-     */
-    public static boolean isReelsFeedPath(String path) {
-        return path.contains("/clips/home/")
-                || path.contains("/clips/discover/")
-                || path.contains("/clips/trending/")
-                || path.contains("/clips/explore_reels/")
-                || path.contains("/clips/home_connected/");
-    }
-
     public static boolean lock() {
         long days = parseLong(Pref.focusLockDurationDays());
         if (days <= 0) days = 7;

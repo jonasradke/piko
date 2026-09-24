@@ -20,8 +20,9 @@ val focusLockPatch =
     bytecodePatch(
         name = "Focus Lock",
         description = "Commitment mode for cutting down on Instagram. Pick what to block (Reels, Explore) and a " +
-            "duration; once locked those protections are forced on and cannot be switched off. Unlocking early " +
-            "requires a 24 hour cooling-off period, and resetting or importing settings is blocked while locked.",
+            "duration; once locked those protections are forced on and cannot be switched off. Reels shared with " +
+            "you still open. Unlocking early requires a 24 hour cooling-off period, and resetting or importing " +
+            "settings is blocked while locked.",
     ) {
         dependsOn(
             settingsPatch,

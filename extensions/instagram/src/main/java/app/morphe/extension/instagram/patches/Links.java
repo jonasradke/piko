@@ -20,8 +20,6 @@ import app.morphe.extension.instagram.entity.Entity;
 import app.morphe.extension.instagram.entity.MediaData;
 import app.morphe.extension.instagram.settings.SettingsStatus;
 import app.morphe.extension.instagram.utils.Pref;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import app.morphe.extension.shared.Logger;
 import app.morphe.extension.shared.ShareLinkSanitizer;
@@ -32,7 +30,6 @@ import app.morphe.extension.instagram.patches.story.StorySeenRequestScope;
 import app.morphe.extension.crimera.PikoUtils;
 
 import app.morphe.extension.instagram.settings.ActivityHook;
-import app.morphe.extension.instagram.patches.focusLock.FocusLock;
 
 @SuppressWarnings("unused")
 public class Links {
@@ -155,8 +152,6 @@ public class Links {
                     shouldBlockUri = DISABLE_ADS;
                 } else if (path.contains("/highlights_tray")) {
                     shouldBlockUri = DISABLE_HIGHLIGHTS;
-                } else if (FocusLock.isReelsFeedPath(path)) {
-                    shouldBlockUri = FocusLock.blocksReels();
                 }
 
             }
@@ -166,13 +161,7 @@ public class Links {
         }
         // Exception is hanndled at call.
         if (shouldBlockUri && Pref.pikoDebug()) {
-            // Surfaced as a toast too: a blocked request is otherwise invisible without adb,
-            // and it is the only way to tell an intentional block from an unrelated failure.
-            String blocked = String.valueOf(uri);
-            Log.d("piko", "blocked uri: " + blocked);
-            new Handler(Looper.getMainLooper()).post(
-                    () -> Utils.showToastShort("piko blocked: " + blocked)
-            );
+            Log.d("piko", "blocked uri: " + uri);
         }
         if(shouldBlockUri) {
             throw new IOException("Block uri");

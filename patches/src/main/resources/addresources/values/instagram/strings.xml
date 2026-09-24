@@ -57,7 +57,7 @@
     <string name="piko_limit_following_feed_desc">Filters the home feed to display only content from profiles you follow.</string>
     <string name="piko_focus_lock">Focus Lock</string>
     <string name="piko_focus_lock_block_reels">Focus Lock: block Reels</string>
-    <string name="piko_focus_lock_block_reels_desc">While locked, hides the Reels button, disables Reels scrolling and blocks the Reels feed.</string>
+    <string name="piko_focus_lock_block_reels_desc">While locked, removes the Reels tab and disables Reels scrolling. Reels shared with you still open.</string>
     <string name="piko_focus_lock_block_explore">Focus Lock: block Explore</string>
     <string name="piko_focus_lock_block_explore_desc">While locked, disables the Explore page.</string>
     <string name="piko_focus_lock_duration">Focus Lock duration</string>
