@@ -25,7 +25,6 @@ public class FocusLock {
     public static final long COOLING_OFF_MS = 24L * 60 * 60 * 1000;
     /** Prefix for the per target "lock this" preferences. */
     public static final String SELECTION_PREFIX = "focus_lock_sel_";
-    private static final long DAY_MS = 24L * 60 * 60 * 1000;
 
     private static long parseLong(String value) {
         try {
@@ -65,8 +64,9 @@ public class FocusLock {
         return isActive() && unlockRequestedAt() > 0;
     }
 
+    /** Waiting longer than the lock itself would be pointless, so it is capped at the end. */
     public static long unlockAvailableAt() {
-        return unlockRequestedAt() + COOLING_OFF_MS;
+        return Math.min(unlockRequestedAt() + COOLING_OFF_MS, lockedUntil());
     }
 
     public static boolean canUnlockNow() {
@@ -99,7 +99,7 @@ public class FocusLock {
     }
 
     public static boolean lock() {
-        long until = System.currentTimeMillis() + FocusLockDuration.days() * DAY_MS;
+        long until = System.currentTimeMillis() + FocusLockDuration.millis();
         return Pref.setFocusLockUntil(String.valueOf(until))
                 && Pref.setFocusLockUnlockRequestedAt("0");
     }

@@ -60,12 +60,7 @@
     <string name="piko_focus_lock_targets">Settings to lock</string>
     <string name="piko_focus_lock_reels_tab">Reels tab</string>
     <string name="piko_focus_lock_reels_tab_desc">Removes the Reels tab from the navigation bar. Reels shared with you still open.</string>
-    <string name="piko_focus_lock_duration">Focus Lock duration</string>
-    <string name="piko_focus_lock_duration_desc">How long the lock stays active once enabled.</string>
-    <string name="piko_focus_lock_duration_custom">Custom</string>
-    <string name="piko_focus_lock_duration_custom_title">Lock for how long?</string>
-    <string name="piko_focus_lock_duration_custom_desc">Number of days, from %1$d to %2$d.</string>
-    <string name="piko_focus_lock_duration_days">%1$d days</string>
+    <string name="piko_focus_lock_duration">Lock for</string>
     <string name="piko_focus_lock_enforced">Forced on by Focus Lock.</string>
     <string name="piko_focus_lock_button_lock">Lock now</string>
     <string name="piko_focus_lock_button_request_unlock">Request unlock</string>
@@ -77,7 +72,7 @@
     <string name="piko_focus_lock_status_unlock_ready">Cooling-off period is over. Tap to unlock.</string>
     <string name="piko_focus_lock_nothing_selected">Pick at least one setting to lock first.</string>
     <string name="piko_focus_lock_confirm_lock">Enable Focus Lock?</string>
-    <string name="piko_focus_lock_confirm_lock_desc">The settings you picked stay on for %1$s day(s). To unlock early you have to request it and wait %2$d hours. Resetting and importing settings are blocked while locked. The app will restart.</string>
+    <string name="piko_focus_lock_confirm_lock_desc">The settings you picked stay on for %1$s. To unlock early you have to request it and wait up to %2$d hours. Resetting and importing settings are blocked while locked. The app will restart.</string>
     <string name="piko_focus_lock_confirm_request_unlock">Request unlock?</string>
     <string name="piko_focus_lock_confirm_request_unlock_desc">The lock stays active for another %1$d hours. After that, come back here and confirm the unlock.</string>
     <string name="piko_focus_lock_confirm_unlock">Unlock now?</string>

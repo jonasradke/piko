@@ -12,7 +12,6 @@ import android.preference.ListPreference;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import app.morphe.extension.instagram.patches.focusLock.FocusLockDuration;
 import app.morphe.extension.instagram.settings.Settings;
 import app.morphe.extension.shared.ResourceUtils;
 import android.preference.Preference;
@@ -43,19 +42,6 @@ public class ListPref extends ListPreference {
         setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                if (Settings.FOCUS_LOCK_DURATION_DAYS.key.equals(preference.getKey())) {
-                    if (FocusLockDuration.CUSTOM_VALUE.equals(newValue)) {
-                        // Not a real value, so it must never be stored.
-                        FocusLockDuration.showCustomDialog(
-                                getContext(),
-                                () -> preference.setSummary(FocusLockDuration.summary())
-                        );
-                        return false;
-                    }
-                    helper.setValue(preference, newValue);
-                    preference.setSummary(FocusLockDuration.summary());
-                    return true;
-                }
                 helper.setValue(preference,newValue);
                 return true;
             }
@@ -77,9 +63,6 @@ public class ListPref extends ListPreference {
             } else if (key == Settings.CHANGE_LIKE_ANIMATION.key) {
                 entries = ResourceUtils.getStringArray("piko_array_change_like_animation");
                 entriesValues = ResourceUtils.getStringArray("piko_array_change_like_animation_val");
-            } else if (key == Settings.FOCUS_LOCK_DURATION_DAYS.key) {
-                entries = ResourceUtils.getStringArray("piko_array_focus_lock_duration");
-                entriesValues = ResourceUtils.getStringArray("piko_array_focus_lock_duration_val");
             }
         } else {
             entries = ResourceUtils.getStringArray("piko_array_recmd_flag_states");

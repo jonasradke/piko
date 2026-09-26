@@ -188,12 +188,12 @@ public class Pref {
         return new BooleanSetting(FocusLock.SELECTION_PREFIX + key, false);
     }
 
-    public static String focusLockDurationDays() {
-        return SharedPref.getStringPref(Settings.FOCUS_LOCK_DURATION_DAYS);
+    public static String focusLockDurationMinutes() {
+        return SharedPref.getStringPref(Settings.FOCUS_LOCK_DURATION_MINUTES);
     }
 
-    public static boolean setFocusLockDurationDays(String value) {
-        return SharedPref.setStringPref(Settings.FOCUS_LOCK_DURATION_DAYS.key, value);
+    public static boolean setFocusLockDurationMinutes(String value) {
+        return SharedPref.setStringPref(Settings.FOCUS_LOCK_DURATION_MINUTES.key, value);
     }
 
     public static String focusLockUntil() {

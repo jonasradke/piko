@@ -13,7 +13,6 @@ import android.content.Context;
 import android.preference.Preference;
 
 import app.morphe.extension.crimera.PikoUtils;
-import app.morphe.extension.instagram.utils.Pref;
 import app.morphe.extension.instagram.settings.preference.widgets.InstagramPreferenceStyle;
 import app.morphe.extension.shared.Utils;
 
@@ -43,10 +42,9 @@ public class FocusLockDialogs {
             PikoUtils.toast(str("piko_focus_lock_nothing_selected"));
             return;
         }
-        String days = Pref.focusLockDurationDays();
         String message = String.format(
                 str("piko_focus_lock_confirm_lock_desc"),
-                days,
+                FocusLockDuration.summary(),
                 FocusLock.COOLING_OFF_MS / (60 * 60 * 1000)
         );
         new AlertDialog.Builder(InstagramPreferenceStyle.dialogContext(context))
