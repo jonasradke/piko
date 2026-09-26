@@ -26,6 +26,15 @@ public class FocusLock {
     /** Prefix for the per target "lock this" preferences. */
     public static final String SELECTION_PREFIX = "focus_lock_sel_";
 
+    /**
+     * Layout of the stored lock.
+     *
+     * A lock records what it holds and how long for. When that layout changes, an existing lock
+     * no longer means what it says, so it is retired rather than enforced against values it was
+     * never written for. Bump this whenever the stored shape changes.
+     */
+    private static final String FORMAT = "2";
+
     private static long parseLong(String value) {
         try {
             return Long.parseLong(value);
@@ -45,6 +54,8 @@ public class FocusLock {
     // Intentionally does not consult SettingsStatus: the lock timestamp is only ever written by
     // this class, and hooks like HideNavigationButtonsPatch may read preferences at class-load time.
     public static boolean isLocked() {
+        // A lock written in an older layout is not enforceable, so it is treated as over.
+        if (!FORMAT.equals(Pref.focusLockFormat())) return false;
         return System.currentTimeMillis() < lockedUntil();
     }
 
@@ -100,7 +111,8 @@ public class FocusLock {
 
     public static boolean lock() {
         long until = System.currentTimeMillis() + FocusLockDuration.millis();
-        return Pref.setFocusLockUntil(String.valueOf(until))
+        return Pref.setFocusLockFormat(FORMAT)
+                && Pref.setFocusLockUntil(String.valueOf(until))
                 && Pref.setFocusLockUnlockRequestedAt("0");
     }
 

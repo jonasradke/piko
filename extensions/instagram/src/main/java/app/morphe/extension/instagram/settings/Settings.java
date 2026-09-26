@@ -62,6 +62,8 @@ public class Settings {
     public static final StringSetting FOCUS_LOCK_DURATION_MINUTES = new StringSetting("focus_lock_duration_minutes", "10080");
     // Epoch millis. "0" means not locked.
     public static final StringSetting FOCUS_LOCK_UNTIL = new StringSetting("focus_lock_until", "0");
+    // Layout the stored lock was written with, so an older one can be retired. See FocusLock.
+    public static final StringSetting FOCUS_LOCK_FORMAT = new StringSetting("focus_lock_format", "");
     // Epoch millis of the pending unlock request. "0" means none.
     public static final StringSetting FOCUS_LOCK_UNLOCK_REQUESTED_AT = new StringSetting("focus_lock_unlock_requested_at", "0");
     public static final BooleanSetting REMOVE_EMPTY_BOTTOM_SPACE = new BooleanSetting("remove_empty_bottom_space", true);

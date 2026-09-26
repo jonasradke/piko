@@ -196,6 +196,14 @@ public class Pref {
         return SharedPref.setStringPref(Settings.FOCUS_LOCK_DURATION_MINUTES.key, value);
     }
 
+    public static String focusLockFormat() {
+        return SharedPref.getStringPref(Settings.FOCUS_LOCK_FORMAT);
+    }
+
+    public static boolean setFocusLockFormat(String value) {
+        return SharedPref.setStringPref(Settings.FOCUS_LOCK_FORMAT.key, value);
+    }
+
     public static String focusLockUntil() {
         return SharedPref.getStringPref(Settings.FOCUS_LOCK_UNTIL);
     }
