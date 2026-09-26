@@ -39,9 +39,7 @@ public class FocusLockDialogs {
     }
 
     private static void confirmLock(Context context) {
-        boolean reels = Pref.focusLockBlockReels();
-        boolean explore = Pref.focusLockBlockExplore();
-        if (!reels && !explore) {
+        if (!FocusLock.hasSelection()) {
             PikoUtils.toast(str("piko_focus_lock_nothing_selected"));
             return;
         }

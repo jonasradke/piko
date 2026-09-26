@@ -12,6 +12,7 @@ import android.text.format.DateFormat;
 
 import java.util.Date;
 
+import app.morphe.extension.crimera.settings.BooleanSetting;
 import app.morphe.extension.instagram.utils.Pref;
 
 /**
@@ -22,6 +23,8 @@ import app.morphe.extension.instagram.utils.Pref;
 @SuppressWarnings("unused")
 public class FocusLock {
     public static final long COOLING_OFF_MS = 24L * 60 * 60 * 1000;
+    /** Prefix for the per target "lock this" preferences. */
+    public static final String SELECTION_PREFIX = "focus_lock_sel_";
     private static final long DAY_MS = 24L * 60 * 60 * 1000;
 
     private static long parseLong(String value) {
@@ -59,14 +62,29 @@ public class FocusLock {
         return isUnlockPending() && System.currentTimeMillis() >= unlockAvailableAt();
     }
 
-    // Enforcement helpers. These are OR-ed into the regular preference getters in Pref,
-    // so the underlying switches keep their stored value and simply cannot take effect.
-    public static boolean blocksReels() {
-        return isLocked() && Pref.focusLockBlockReels();
+    // Enforcement. These are OR-ed in where the setting is read, so the underlying switch keeps
+    // its stored value and simply cannot take effect while the lock is on.
+
+    /** Whether the lock currently forces {@code setting} on. */
+    public static boolean isForced(BooleanSetting setting) {
+        return isForced(setting.key);
     }
 
-    public static boolean blocksExplore() {
-        return isLocked() && Pref.focusLockBlockExplore();
+    public static boolean isForced(String key) {
+        return isLocked() && Pref.focusLockSelected(key);
+    }
+
+    /** The Reels navigation tab, which is not a switch of its own. */
+    public static boolean blocksReels() {
+        return isForced(FocusLockTargets.REELS_TAB_KEY);
+    }
+
+    /** True when at least one target is picked, so there is something to lock. */
+    public static boolean hasSelection() {
+        for (FocusLockTargets.Target target : FocusLockTargets.available()) {
+            if (Pref.focusLockSelected(target.key)) return true;
+        }
+        return false;
     }
 
     public static boolean lock() {
