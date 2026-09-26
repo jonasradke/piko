@@ -196,6 +196,15 @@ public class Pref {
         return SharedPref.setStringPref(Settings.FOCUS_LOCK_DURATION_MINUTES.key, value);
     }
 
+    /** Keys of the first released Focus Lock, read so a lock it wrote still counts. */
+    public static boolean legacyFocusLockBlockReels() {
+        return SharedPref.getBooleanPref(new BooleanSetting("focus_lock_block_reels", false));
+    }
+
+    public static boolean legacyFocusLockBlockExplore() {
+        return SharedPref.getBooleanPref(new BooleanSetting("focus_lock_block_explore", false));
+    }
+
     public static String focusLockFormat() {
         return SharedPref.getStringPref(Settings.FOCUS_LOCK_FORMAT);
     }

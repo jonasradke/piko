@@ -13,6 +13,7 @@ import android.text.format.DateFormat;
 import java.util.Date;
 
 import app.morphe.extension.crimera.settings.BooleanSetting;
+import app.morphe.extension.instagram.settings.Settings;
 import app.morphe.extension.instagram.utils.Pref;
 
 /**
@@ -54,9 +55,19 @@ public class FocusLock {
     // Intentionally does not consult SettingsStatus: the lock timestamp is only ever written by
     // this class, and hooks like HideNavigationButtonsPatch may read preferences at class-load time.
     public static boolean isLocked() {
-        // A lock written in an older layout is not enforceable, so it is treated as over.
-        if (!FORMAT.equals(Pref.focusLockFormat())) return false;
         return System.currentTimeMillis() < lockedUntil();
+    }
+
+    /**
+     * Whether the running lock was written before this layout existed.
+     *
+     * Such a lock is still honoured, through the keys it was written with. Releasing it on update
+     * would turn updating piko into a way out of a lock, which is the one thing the feature is
+     * supposed to prevent. It is read rather than rewritten, so nothing is persisted behind the
+     * user's back; the next lock they set is written in the current layout.
+     */
+    private static boolean isLegacyLock() {
+        return !FORMAT.equals(Pref.focusLockFormat());
     }
 
     /**
@@ -93,7 +104,15 @@ public class FocusLock {
     }
 
     public static boolean isForced(String key) {
-        return isLocked() && Pref.focusLockSelected(key);
+        if (!isLocked()) return false;
+        return isLegacyLock() ? legacySelected(key) : Pref.focusLockSelected(key);
+    }
+
+    /** The first released version held exactly these two things. */
+    private static boolean legacySelected(String key) {
+        if (FocusLockTargets.REELS_TAB_KEY.equals(key)) return Pref.legacyFocusLockBlockReels();
+        if (Settings.DISABLE_EXPLORE.key.equals(key)) return Pref.legacyFocusLockBlockExplore();
+        return false;
     }
 
     /** The Reels navigation tab, which is not a switch of its own. */
@@ -103,6 +122,9 @@ public class FocusLock {
 
     /** True when at least one target is picked, so there is something to lock. */
     public static boolean hasSelection() {
+        if (isLegacyLock() && isLocked()) {
+            return Pref.legacyFocusLockBlockReels() || Pref.legacyFocusLockBlockExplore();
+        }
         for (FocusLockTargets.Target target : FocusLockTargets.available()) {
             if (Pref.focusLockSelected(target.key)) return true;
         }
