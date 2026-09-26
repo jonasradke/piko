@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-09-24T12:30:00",
-  "description": "## 3.10.0-focus-lock.6\n\nFixes reels and posts opened from a story or the notifications tab. Focus Lock no longer blocks Reels endpoints, since `/clips/discover/stream/` serves both the Reels tab and single shared reels. Removing the tab and disabling scrolling still apply.",
-  "download_url": "https://github.com/jonasradke/piko/releases/download/v3.9.0-focus-lock.6/patches-focus-lock.6.mpp",
-  "version": "3.10.0-focus-lock.6"
+  "created_at": "2026-09-26T21:00:00",
+  "description": "## 3.10.0-focus-lock.7\n\nReview fixes: the explore block is re-evaluated per request so natural expiry releases it without a restart, the navigation editor no longer saves the locked layout permanently, and forced switches keep their checked state.",
+  "download_url": "https://github.com/jonasradke/piko/releases/download/v3.9.0-focus-lock.7/patches-focus-lock.7.mpp",
+  "version": "3.10.0-focus-lock.7"
 }
