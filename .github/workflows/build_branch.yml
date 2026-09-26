@@ -1,0 +1,45 @@
+name: Build branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feat/**
+      - tmp/**
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  build:
+    name: Build patches
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v5.6.0
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache Gradle
+        uses: burrunan/gradle-cache-action@v3
+
+      - name: Build with Gradle
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew clean buildAndroid
+
+      - name: Upload patches
+        uses: actions/upload-artifact@v4
+        with:
+          name: piko-patches
+          path: |
+            patches/build/libs/*.mpp
+            patches/build/libs/*.jar
+          if-no-files-found: error
