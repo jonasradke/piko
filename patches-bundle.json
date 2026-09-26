@@ -1,6 +1,6 @@
 {
-  "created_at": "2026-09-27T01:30:00",
-  "description": "## 3.10.0-focus-lock.12\n\nRetires a lock written in an older layout, so a lock made during earlier test builds no longer holds the settings shut. Duration slider from 1 minute to 3 months. Not yet on the PR.",
-  "download_url": "https://github.com/jonasradke/piko/releases/download/v3.9.0-focus-lock.12/patches-focus-lock.12.mpp",
-  "version": "3.10.0-focus-lock.12"
+  "created_at": "2026-09-27T02:30:00",
+  "description": "## 3.10.0-focus-lock.13\n\nLock any Distraction free setting, duration slider from 1 minute to 3 months. A lock from the released version is honoured rather than dropped on update. Candidate for a follow up PR.",
+  "download_url": "https://github.com/jonasradke/piko/releases/download/v3.9.0-focus-lock.13/patches-focus-lock.13.mpp",
+  "version": "3.10.0-focus-lock.13"
 }
