@@ -49,9 +49,20 @@ public class FocusLock {
         return System.currentTimeMillis() < lockedUntil();
     }
 
+    /**
+     * Whether the lock is actually holding something.
+     *
+     * A lock with nothing selected enforces nothing, so it must not gate the settings UI or
+     * block resetting either, otherwise it just locks the user out for no reason. This is what
+     * everything outside of enforcement should ask.
+     */
+    public static boolean isActive() {
+        return isLocked() && hasSelection();
+    }
+
     /** True while an unlock request is pending its cooling-off period. */
     public static boolean isUnlockPending() {
-        return isLocked() && unlockRequestedAt() > 0;
+        return isActive() && unlockRequestedAt() > 0;
     }
 
     public static long unlockAvailableAt() {
@@ -115,7 +126,7 @@ public class FocusLock {
 
     /** Summary shown under the lock/unlock button. */
     public static String statusSummary() {
-        if (!isLocked()) {
+        if (!isActive()) {
             return str("piko_focus_lock_status_unlocked");
         }
         String until = formatDate(lockedUntil());
@@ -129,7 +140,7 @@ public class FocusLock {
     }
 
     public static String buttonTitle() {
-        if (!isLocked()) return str("piko_focus_lock_button_lock");
+        if (!isActive()) return str("piko_focus_lock_button_lock");
         if (canUnlockNow()) return str("piko_focus_lock_button_unlock");
         if (isUnlockPending()) return str("piko_focus_lock_button_cancel_unlock");
         return str("piko_focus_lock_button_request_unlock");

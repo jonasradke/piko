@@ -478,7 +478,7 @@ public class ScreenBuilder {
     public void buildFocusLockSection() {
         if (!SettingsStatus.focusLock) return;
 
-        boolean locked = FocusLock.isLocked();
+        boolean locked = FocusLock.isActive();
 
         addPreference(
                 helper.buttonPreference(

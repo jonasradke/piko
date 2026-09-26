@@ -21,7 +21,7 @@ import app.morphe.extension.shared.Utils;
 public class FocusLockDialogs {
 
     public static void onActionPressed(Context context, Preference button) {
-        if (!FocusLock.isLocked()) {
+        if (!FocusLock.isActive()) {
             confirmLock(context);
         } else if (FocusLock.canUnlockNow()) {
             confirmUnlock(context);

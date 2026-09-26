@@ -32,7 +32,7 @@ public class Pref {
 
     public static boolean clearAllPreferences() {
         // Resetting settings would silently drop an active Focus Lock.
-        if (FocusLock.isLocked()) return false;
+        if (FocusLock.isActive()) return false;
         return SharedPref.clearAll();
     }
     
