@@ -192,6 +192,10 @@ public class Pref {
         return SharedPref.getStringPref(Settings.FOCUS_LOCK_DURATION_DAYS);
     }
 
+    public static boolean setFocusLockDurationDays(String value) {
+        return SharedPref.setStringPref(Settings.FOCUS_LOCK_DURATION_DAYS.key, value);
+    }
+
     public static String focusLockUntil() {
         return SharedPref.getStringPref(Settings.FOCUS_LOCK_UNTIL);
     }

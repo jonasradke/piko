@@ -62,6 +62,10 @@
     <string name="piko_focus_lock_reels_tab_desc">Removes the Reels tab from the navigation bar. Reels shared with you still open.</string>
     <string name="piko_focus_lock_duration">Focus Lock duration</string>
     <string name="piko_focus_lock_duration_desc">How long the lock stays active once enabled.</string>
+    <string name="piko_focus_lock_duration_custom">Custom</string>
+    <string name="piko_focus_lock_duration_custom_title">Lock for how long?</string>
+    <string name="piko_focus_lock_duration_custom_desc">Number of days, from %1$d to %2$d.</string>
+    <string name="piko_focus_lock_duration_days">%1$d days</string>
     <string name="piko_focus_lock_enforced">Forced on by Focus Lock.</string>
     <string name="piko_focus_lock_button_lock">Lock now</string>
     <string name="piko_focus_lock_button_request_unlock">Request unlock</string>

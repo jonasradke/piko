@@ -27,6 +27,7 @@ import  app.morphe.extension.instagram.patches.devFlags.Flag;
 import app.morphe.extension.crimera.downloader.StorageUtils;
 import app.morphe.extension.instagram.patches.Links;
 import app.morphe.extension.instagram.patches.focusLock.FocusLock;
+import app.morphe.extension.instagram.patches.focusLock.FocusLockDuration;
 import app.morphe.extension.instagram.patches.focusLock.FocusLockTargets;
 import app.morphe.extension.instagram.settings.SettingsStatus;
 import app.morphe.extension.crimera.settings.BooleanSetting;
@@ -490,7 +491,7 @@ public class ScreenBuilder {
 
         Preference duration = helper.listPreference(
                 str("piko_focus_lock_duration"),
-                str("piko_focus_lock_duration_desc"),
+                FocusLockDuration.summary(),
                 Settings.FOCUS_LOCK_DURATION_DAYS
         );
         duration.setEnabled(!locked);

@@ -99,9 +99,7 @@ public class FocusLock {
     }
 
     public static boolean lock() {
-        long days = parseLong(Pref.focusLockDurationDays());
-        if (days <= 0) days = 7;
-        long until = System.currentTimeMillis() + days * DAY_MS;
+        long until = System.currentTimeMillis() + FocusLockDuration.days() * DAY_MS;
         return Pref.setFocusLockUntil(String.valueOf(until))
                 && Pref.setFocusLockUnlockRequestedAt("0");
     }
